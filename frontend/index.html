@@ -1,0 +1,38 @@
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<div id="chatbot">
+  <div id="chat-log"></div>
+
+  <input id="user-input" type="text">
+  <button onclick="getBotResponse()">Send</button>
+</div>
+
+<script>
+  // Call API endpoint to get bot response
+  async function getBotResponse() {
+    const input = document.getElementById("user-input").value;
+    const response = await fetch("/chatbot", {
+      method: "POST", 
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        input: input
+      })
+    });
+
+    const json = await response.json();
+    displayBotResponse(json.response);
+  }
+  
+  function displayBotResponse(response) {
+    // Display response in chat log
+  }
+</script>
+
+</body>
+</html>
